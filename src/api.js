@@ -1,13 +1,5 @@
-/**
- *
- * @param {*} events:
- * The following function should be in the “api.js” file.
- * This function takes an events array, then uses map to create a new array with only locations.
- * It will also remove all duplicates by creating another new array using the spread operator and spreading a Set.
- * The Set will remove all duplicates from the array.
- */
 import { mockData } from './mock-data';
-import axios from 'axios';
+import axios from "axios";
 import NProgress from 'nprogress';
 
 export const extractLocations = (events) => {
@@ -15,6 +7,7 @@ export const extractLocations = (events) => {
     var locations = [...new Set(extractLocations)];
     return locations;
 };
+
 
 const checkToken = async (accessToken) => {
     const result = await fetch(
@@ -39,9 +32,11 @@ const removeQuery = () => {
         window.history.pushState("", "", newurl);
     }
 };
+
 const getToken = async (code) => {
     const encodeCode = encodeURIComponent(code);
     const { access_token } = await fetch(
+
         "https://gt91fnvv67.execute-api.eu-central-1.amazonaws.com/dev/api/token" +
         "/" +
         encodeCode
@@ -59,7 +54,7 @@ const getToken = async (code) => {
 export const getEvents = async () => {
     NProgress.start();
 
-    if (window.location.href.startsWith('http://localhost')) {
+    if (window.location.href.startsWith("http://localhost")) {
         NProgress.done();
         return mockData;
     }
@@ -68,7 +63,8 @@ export const getEvents = async () => {
 
     if (token) {
         removeQuery();
-        const url = "https://gt91fnvv67.execute-api.eu-central-1.amazonaws.com/dev/api/get-events" + '/' + token;
+        const url = "https://gt91fnvv67.execute-api.eu-central-1.amazonaws.com/dev/api/get-events" + "/" +
+            token;
         const result = await axios.get(url);
         if (result.data) {
             var locations = extractLocations(result.data.events);
@@ -79,7 +75,6 @@ export const getEvents = async () => {
         return result.data.events;
     }
 };
-
 export const getAccessToken = async () => {
     const accessToken = localStorage.getItem("access_token");
     const tokenCheck = accessToken && (await checkToken(accessToken));
