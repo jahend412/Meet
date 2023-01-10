@@ -1,4 +1,3 @@
-import { isLabelWithInternallyDisabledControl } from '@testing-library/user-event/dist/utils';
 import React, { Component } from 'react';
 
 class Alert extends Component {

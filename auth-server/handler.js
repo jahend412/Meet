@@ -16,6 +16,7 @@ const credentials = {
   javascript_origins: ["https://jahend412.github.io", "http://localhost:3000"],
 };
 const { client_secret, client_id, redirect_uris, calendar_id } = credentials;
+
 const oAuth2Client = new google.auth.OAuth2(
   client_id,
   client_secret,
@@ -107,4 +108,23 @@ module.exports.getCalendarEvents = event => {
       }
     );
   })
+    .then(results => {
+      return {
+        statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+        body: JSON.stringify({ events: results.data.items })
+      };
+    })
+    .catch(error => {
+      return {
+        statusCode: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+        body: JSON.stringify(error),
+      };
+    });
+
 }
