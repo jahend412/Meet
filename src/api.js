@@ -17,7 +17,7 @@ export const extractLocations = (events) => {
 };
 
 
-const checkToken = async (accessToken) => {
+export const checkToken = async (accessToken) => {
     const result = await fetch(
         `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
     )
@@ -62,9 +62,17 @@ const getToken = async (code) => {
 export const getEvents = async () => {
     NProgress.start();
 
-    if (window.location.href.startsWith("http://localhost")) {
+    const isLocal =
+        window.location.href.startsWith("http://localhost");
+
+    if (isLocal) {
         NProgress.done();
         return mockData;
+    }
+    if (!navigator.online) {
+        const data = localStorage.getItem("lastEvents");
+        NProgress.done();
+        return data ? JSON.parse(data).events : [];
     }
 
     const token = await getAccessToken();
