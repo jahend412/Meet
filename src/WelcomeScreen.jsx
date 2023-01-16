@@ -24,9 +24,6 @@ o.svg"
                         >
                             <b>Sign in with google</b>
                         </button>
-
-
-
                     </div>
                 </div>
             </div>)
