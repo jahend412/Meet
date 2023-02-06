@@ -8,7 +8,7 @@ import WelcomeScreen from './WelcomeScreen';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import './nprogress.css';
-import EventGenre from "./eventGenre";
+import EventGenre from "./EventGenre";
 
 class App extends Component {
   state = {
