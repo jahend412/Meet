@@ -37,3 +37,35 @@ export const getAuthURL = async () => {
     }),
   };
 };
+
+export const getAccessToken = async (event) => {
+  // Decode authorization code extracted from the URL query
+  const code = decodeURIComponent(`${event.pathParameters.code}`);
+
+  return new Promise((resolve, reject) => {
+    oAuth2Client.getToken(code, (error, response) => {
+      if (error) {
+        return reject(error);
+      }
+      return resolve(response);
+    });
+  })
+    .then((results) => {
+      // Respond with OAuth token
+      return {
+        statusCode: 200,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+        },
+        body: JSON.stringify(results),
+      };
+    })
+    .catch((error) => {
+      // Handle Error
+      return {
+        statusCode: 500,
+        body: JSON.stringify(error),
+      };
+    });
+};
