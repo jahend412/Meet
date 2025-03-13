@@ -1,7 +1,11 @@
 import React from "react";
 
-function App() {
-  return <div></div>;
-}
+const App = () => {
+  return (
+    <div className="App">
+      <div id="event-list"></div>
+    </div>
+  );
+};
 
 export default App;
