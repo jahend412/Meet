@@ -1,7 +1,5 @@
-const { TestEnvironment } = require("jest-environment-jsdom");
-
 module.exports = {
-  TestEnvironment,
+  testEnvironment,
   transform: {
     "^.+\\.jsx?$": "babel-jest", // Transform Javascript and JSX files using Babel
   },
