@@ -1,9 +1,10 @@
 import React from "react";
+import EventList from "./compenents/EventList";
 
 const App = () => {
   return (
     <div className="App">
-      <div id="event-list"></div>
+      <EventList />
     </div>
   );
 };
