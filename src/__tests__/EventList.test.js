@@ -7,4 +7,9 @@ describe("<EventList /> component", () => {
     const EventListComponent = render(<EventList />);
     expect(EventListComponent.queryByRole("list")).toBeInTheDocument();
   });
+
+  test('has an element with "list" role', () => {
+    const EventListComponent = render(<EventList events={[{}, {}, {}, {}]} />);
+    expect(EventListComponent.getAllByRole("listitem")).toHaveLength(4);
+  });
 });
