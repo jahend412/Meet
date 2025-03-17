@@ -1,5 +1,5 @@
 module.exports = {
-  testEnvironment,
+  testEnvironment: "jsdom",
   transform: {
     "^.+\\.jsx?$": "babel-jest", // Transform Javascript and JSX files using Babel
   },
