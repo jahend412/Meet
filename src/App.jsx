@@ -1,5 +1,5 @@
 import React from "react";
-import EventList from "./compenents/EventList";
+import EventList from "./components/EventList";
 
 const App = () => {
   return (
