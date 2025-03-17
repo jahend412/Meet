@@ -8,8 +8,10 @@ describe("<EventList /> component", () => {
     expect(EventListComponent.queryByRole("list")).toBeInTheDocument();
   });
 
-  test('has an element with "list" role', () => {
-    const EventListComponent = render(<EventList events={[{}, {}, {}, {}]} />);
+  test("renders correct number of events", () => {
+    const EventListComponent = render(
+      <EventList events={[{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]} />
+    );
     expect(EventListComponent.getAllByRole("listitem")).toHaveLength(4);
   });
 });
