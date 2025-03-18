@@ -69,3 +69,11 @@ export const getAccessToken = async (event) => {
       };
     });
 };
+
+CALENDAR.events.list({
+  calendarId: CALENDAR_ID,
+  auth: oAuth2Client,
+  timeMin: new Date().toISOString(),
+  singleEvents: true,
+  orderBy: "startTime",
+});
