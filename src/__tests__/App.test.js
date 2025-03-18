@@ -8,4 +8,9 @@ describe("<App /> component", () => {
     const eventList = document.querySelector("#event-list");
     expect(eventList).toBeInTheDocument();
   });
+
+  test("render CitySearch", () => {
+    const AppDom = render(<App />).container.firstChild;
+    expect(AppDom.querySelector("#city-search")).toBeInTheDocument();
+  });
 });
